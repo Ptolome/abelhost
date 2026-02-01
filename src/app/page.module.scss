@@ -1,0 +1,122 @@
+/* page.module.css */
+
+.page {
+  --background: #fafafa;
+  --foreground: #fff;
+
+  --text-primary: #000;
+  --text-secondary: #666;
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+  --button-secondary-border: #ebebeb;
+
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-geist-sans);
+  background-color: var(--background);
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: var(--foreground);
+  padding: 60px 40px;
+  gap: 60px;
+
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.heroTitle {
+  max-width: 320px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+.heroSubtitle {
+  max-width: 440px;
+  font-size: 18px;
+  line-height: 32px;
+  text-wrap: balance;
+  color: var(--text-secondary);
+}
+
+.productsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+  width: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .main {
+    padding: 40px 20px;
+    gap: 40px;
+    max-width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -1.92px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 32px 16px;
+    gap: 32px;
+  }
+
+  .productsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

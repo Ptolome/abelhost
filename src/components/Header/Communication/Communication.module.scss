@@ -1,0 +1,17 @@
+@use '@styles/variables' as *;
+
+.wripper {
+    display: flex;
+    background-color:$background-dark ;
+    color:$text-white;
+    gap:10px;  
+
+}
+.item {
+    display: flex;
+  align-items: centere;  
+}
+
+.auth {
+    margin-left: auto;
+}
