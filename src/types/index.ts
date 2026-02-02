@@ -27,12 +27,13 @@ export interface User {
   lastName: string;
   gender: string;
   image: string;
-  token: string;
+  token?: string;
 }
 
 export interface AuthCredentials {
   username: string;
   password: string;
+  expiresInMins?: number;
 }
 
 export interface AuthState {
@@ -42,6 +43,8 @@ export interface AuthState {
   login: (credentials: AuthCredentials) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  initialize: () => Promise<void>;
+  refreshUserToken?: () => Promise<string | void>;
 }
 
 export interface CartProduct {
@@ -70,4 +73,17 @@ export interface CartResponse {
   total: number;
   skip: number;
   limit: number;
+}
+
+export interface LoginResponse {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  accessToken: string;
+  refreshToken: string;
+  expiresInMins?: number;
 }

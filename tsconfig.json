@@ -35,6 +35,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/components/ErronMessage"  ],
+, "src/components/ErrorMessage"  ],
   "exclude": ["node_modules"]
 }

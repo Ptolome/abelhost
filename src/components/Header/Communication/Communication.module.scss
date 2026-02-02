@@ -2,16 +2,29 @@
 
 .wripper {
     display: flex;
-    background-color:$background-dark ;
+    max-width: 1200px;
+    margin: 0 auto;
     color:$text-white;
-    gap:10px;  
+    gap:20px;  
+    padding-block: 10px;
+    padding-inline: 20px;
 
+   
+}
+
+.container {
+    background-color: $background-darker ;
+  
 }
 .item {
     display: flex;
-  align-items: centere;  
+    align-items: center;  
+    @media (max-width: 900px) {
+            display: none;;
+        }
+
 }
 
 .auth {
     margin-left: auto;
-}
+}   

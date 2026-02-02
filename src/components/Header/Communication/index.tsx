@@ -8,6 +8,7 @@ import Login from './Login/Login'
 
 const Communication = () => {
   return (
+    <div className={st.container}>
     <div className={st.wripper}>
       {data.map(({id,title, icon})=>(
         <div key={id} className={st.item}>
@@ -20,7 +21,7 @@ const Communication = () => {
       <Login className={st.auth}/>
     </div>
     
-    
+    </div>
   )
 }
 

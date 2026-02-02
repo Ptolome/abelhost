@@ -17,16 +17,20 @@ export default function LoginPage() {
     username: '',
     password: '',
   });
+  const [isMounted, setIsMounted] = useState(false);
   
   useEffect(() => {
-    // Если пользователь уже авторизован, редирект на главную
+    setIsMounted(true);
+    
     if (user) {
       router.push('/');
     }
   }, [user, router]);
   
   useEffect(() => {
-    clearError();
+    return () => {
+      clearError();
+    };
   }, [clearError]);
   
   const validateForm = () => {
@@ -56,15 +60,14 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    if (!validateForm() || isLoading) {
       return;
     }
     
     try {
       await login(formData);
-      router.push('/');
     } catch (err) {
-      // Ошибка уже обрабатывается в store
+      console.error('Login error:', err);
     }
   };
   
@@ -75,14 +78,25 @@ export default function LoginPage() {
       [name]: value
     }));
     
-    // Clear validation error when user starts typing
     if (validationErrors[name as keyof typeof validationErrors]) {
       setValidationErrors(prev => ({
         ...prev,
         [name]: ''
       }));
     }
+    
+    if (error) {
+      clearError();
+    }
   };
+  
+  if (!isMounted) {
+    return null; 
+  }
+  
+  if (user) {
+    return null;
+  }
   
   return (
     <div className={styles.loginContainer}>
@@ -92,9 +106,7 @@ export default function LoginPage() {
         
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="username" className={styles.label}>
-              Username
-            </label>
+           
             <input
               type="text"
               id="username"
@@ -102,8 +114,8 @@ export default function LoginPage() {
               value={formData.username}
               onChange={handleChange}
               className={`${styles.input} ${validationErrors.username ? styles.inputError : ''}`}
-              placeholder="Enter your username"
-              disabled={isLoading}
+              placeholder="Username"
+              autoComplete="username"
             />
             {validationErrors.username && (
               <span className={styles.errorText}>{validationErrors.username}</span>
@@ -111,9 +123,7 @@ export default function LoginPage() {
           </div>
           
           <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
-              Password
-            </label>
+            
             <input
               type="password"
               id="password"
@@ -121,8 +131,8 @@ export default function LoginPage() {
               value={formData.password}
               onChange={handleChange}
               className={`${styles.input} ${validationErrors.password ? styles.inputError : ''}`}
-              placeholder="Enter your password"
-              disabled={isLoading}
+              placeholder="Password"
+              autoComplete="current-password"
             />
             {validationErrors.password && (
               <span className={styles.errorText}>{validationErrors.password}</span>
@@ -131,7 +141,7 @@ export default function LoginPage() {
           
           {error && (
             <div className={styles.apiError}>
-              {error}
+              <strong>Error:</strong> {error}
             </div>
           )}
           
@@ -142,8 +152,8 @@ export default function LoginPage() {
           >
             {isLoading ? (
               <>
-                <LoadingSpinner small />
-                Logging in...
+                <LoadingSpinner />
+                <span>Logging in...</span>
               </>
             ) : (
               'Login'
@@ -153,8 +163,8 @@ export default function LoginPage() {
         
         <div className={styles.demoCredentials}>
           <p>Demo credentials:</p>
-          <p>Username: <strong>kminchelle</strong></p>
-          <p>Password: <strong>0lelplR</strong></p>
+          <p>Username: <strong>emilys</strong></p>
+          <p>Password: <strong>emilyspass</strong></p>
         </div>
       </div>
     </div>

@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
-import ErrorMessage from '@/components/ErronMessage/ErronMessage';
-import { getProducts } from '@/services/authService';
+import ErrorMessage from '@/components/ErrorMessage/ErronMessage';
+import { getProducts } from '@/services/productService';
 import { Product, ProductsResponse } from '@/types';
 import styles from './page.module.scss';
 
@@ -42,12 +42,10 @@ export default function HomePage() {
       <main className={styles.main}>
       <section className={styles.heroSection}>
         <h1 className={styles.heroTitle}>Latest Products</h1>
-        <p className={styles.heroSubtitle}>Discover our amazing collection</p>
       </section>
       
       <section className={styles.productsSection}>
-        <h2 className={styles.sectionTitle}>Featured Products</h2>
-        <div className={styles.productsGrid}>
+         <div className={styles.productsGrid}>
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

@@ -1,7 +1,7 @@
 import { useAuthStore } from '@/store/authStore';
 import st from './Login.module.scss';
 import Image from 'next/image';
-import {mail} from '@icons/'
+import {userIcon} from '@icons/'
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -14,7 +14,7 @@ const Login:FC<ILogin> = ({className}) => {
     <div className={ className}>
       
         <div  className={st.isAuthBlok}>
-           <Image width={28} height={28} src={mail} alt='icon'/>
+           <Image width={28} height={28} src={userIcon} alt='icon'/>
     
           {user ? 
           (<>
