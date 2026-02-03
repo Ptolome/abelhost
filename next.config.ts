@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  /* config options here */
    images: {
     remotePatterns: [
       {
@@ -15,7 +14,6 @@ const nextConfig: NextConfig = {
         hostname: 'i.dummyjson.com',
         pathname: '/**',
       },
-      // Добавьте другие домены, которые используете
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
@@ -27,23 +25,22 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    // Или используйте более простой вариант со списком доменов
     domains: [
       'cdn.dummyjson.com',
       'i.dummyjson.com',
       'images.unsplash.com',
       'via.placeholder.com',
-      'localhost', // для локальной разработки
+      'localhost', 
     ],
   },
   reactCompiler: true,
-
-  // sassOptions: {
-  //   includePaths: [path.join(__dirname, '.src/styles')],
-  // },
+  output: 'standalone',
+  compress: true,
+  generateEtags: true,
+  reactStrictMode: true,
+  
   turbopack: {
-    // Добавьте алиасы для Turbopack
-    resolveAlias: {
+      resolveAlias: {
       '@': './src',
       '@components': './src/components',
       '@styles': './src/styles',
