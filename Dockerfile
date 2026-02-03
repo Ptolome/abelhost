@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Копируем файлы зависимостей
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production --ignore-scripts
+RUN npm ci --include=dev
 
 # Этап 2: Сборка приложения
 FROM node:20-alpine AS builder
